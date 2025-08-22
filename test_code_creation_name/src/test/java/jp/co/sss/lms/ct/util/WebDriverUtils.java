@@ -171,4 +171,14 @@ public class WebDriverUtils {
 		//return clearBtn;
 	}
 
+	public static WebElement getTrainingRelated() {
+		WebElement trainingRelated = webDriver.findElement(By.linkText("【研修関係】"));
+		return trainingRelated;
+	}
+
+	public static WebElement getSearchResultFAQ() {
+		WebElement searchresultFAQ = webDriver.findElement(By.cssSelector(".fs18"));
+		return searchresultFAQ;
+	}
+
 }
