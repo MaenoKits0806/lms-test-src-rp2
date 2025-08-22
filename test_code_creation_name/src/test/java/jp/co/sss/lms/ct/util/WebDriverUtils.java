@@ -146,4 +146,29 @@ public class WebDriverUtils {
 		return FAQ;
 	}
 
+	public static WebElement getKeyword() {
+		WebElement keyword = webDriver.findElement(By.cssSelector(".form-control"));
+		return keyword;
+	}
+
+	public static WebElement getSearchBtn() {
+		WebElement searchBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
+		return searchBtn;
+	}
+
+	public static void getClearBtn() {
+		//WebElement clearBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
+		//List<WebElement> elements = webDriver.findElement(By.tagName("input"));
+		//WebElement elements = webDriver.findElement(By.tagName("input"));
+		// 拡張for文
+		//for (WebElement we : elements) {
+
+		//}
+
+		webDriver.findElement(By.xpath("//input[@value='クリア']")).click();
+
+		//WebElement second_input_element = clearBtn(1);
+		//return clearBtn;
+	}
+
 }

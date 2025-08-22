@@ -187,6 +187,47 @@ public class Case05 {
 
 		WebDriverUtils.getEvidence(instance, suffix);
 
+		// キーワードを入力
+
+		WebElement keyword = WebDriverUtils.getKeyword();
+
+		keyword.sendKeys("助成金");
+
+		// 検索ボタンをクリック
+		WebElement searchBtn = WebDriverUtils.getSearchBtn();
+
+		searchBtn.click();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "05-1_該当キーワードの検索";
+
+		WebDriverUtils.getEvidence(instance, suffix);
+
+		WebDriverUtils.scrollTo(250);
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "05-2_該当キーワードの検索結果";
+
+		WebDriverUtils.getEvidence(instance, suffix);
+
+		// クリアボタンをクリック
+		//WebElement clearBtn = WebDriverUtils.getClearBtn();
+		WebDriverUtils.getClearBtn();
+		WebDriverUtils.scrollTo(0);
+
+		//clearBtn.click();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "06_クリアボタン押下";
+
+		WebDriverUtils.getEvidence(instance, suffix);
+
 		// セッション情報を事前に設定する場合、MockHttpSessionを使用する
 		MockHttpSession session = new MockHttpSession();
 		ReflectionTestUtils.setField(loginController, "session", session);
