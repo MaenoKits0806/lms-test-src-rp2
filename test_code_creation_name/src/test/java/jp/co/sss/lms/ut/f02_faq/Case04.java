@@ -1,5 +1,5 @@
 //package jp.co.sss.lms.ut.controller;
-package jp.co.sss.lms.ut.f01_login1;
+package jp.co.sss.lms.ut.f02_faq;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
