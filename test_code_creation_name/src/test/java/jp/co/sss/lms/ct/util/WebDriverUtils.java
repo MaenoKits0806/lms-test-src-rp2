@@ -131,4 +131,19 @@ public class WebDriverUtils {
 		return loginBtn;
 	}
 
+	public static WebElement getFunctionTab() {
+		WebElement functionTab = webDriver.findElement(By.cssSelector(".dropdown-toggle"));
+		return functionTab;
+	}
+
+	public static WebElement getHelpLink() {
+		WebElement helpLink = webDriver.findElement(By.linkText("ヘルプ"));
+		return helpLink;
+	}
+
+	public static WebElement getFAQ() {
+		WebElement FAQ = webDriver.findElement(By.linkText("よくある質問"));
+		return FAQ;
+	}
+
 }
