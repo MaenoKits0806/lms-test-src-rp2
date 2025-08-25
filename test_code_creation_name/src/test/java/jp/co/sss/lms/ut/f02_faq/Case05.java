@@ -217,7 +217,8 @@ public class Case05 {
 		// クリアボタンをクリック
 		//WebElement clearBtn = WebDriverUtils.getClearBtn();
 		WebDriverUtils.getClearBtn();
-		WebDriverUtils.scrollTo(0);
+		//WebDriverUtils.scrollTo(0);
+		WebDriverUtils.scrollTo(250);
 
 		//clearBtn.click();
 

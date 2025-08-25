@@ -188,15 +188,6 @@ public class Case06 {
 
 		// キーワードを入力
 
-		//WebElement keyword = WebDriverUtils.getKeyword();
-
-		//keyword.sendKeys("助成金");
-
-		// 検索ボタンをクリック
-		//WebElement searchBtn = WebDriverUtils.getSearchBtn();
-
-		//searchBtn.click();
-
 		WebElement trainingrelated = WebDriverUtils.getTrainingRelated();
 		trainingrelated.click();
 
@@ -216,16 +207,11 @@ public class Case06 {
 
 		WebDriverUtils.getEvidence(instance, suffix);
 
-		// クリアボタンをクリック
-		//WebElement clearBtn = WebDriverUtils.getClearBtn();
-		//WebDriverUtils.getClearBtn();
-		//WebDriverUtils.scrollTo(0);
+		// 質問リンクをクリック
 
 		WebElement searchresultFAQ = WebDriverUtils.getSearchResultFAQ();
 
 		searchresultFAQ.click();
-
-		//clearBtn.click();
 
 		// 5秒待つ 
 		Thread.sleep(5000);
