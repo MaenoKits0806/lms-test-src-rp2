@@ -240,12 +240,9 @@ public class Case05 {
 		//自分自身をインスタンス化して渡す
 		Case05 instance = new Case05();
 		// クリアボタンをクリック
-		//WebElement clearBtn = WebDriverUtils.getClearBtn();
 		WebDriverUtils.getClearBtn();
 		//WebDriverUtils.scrollTo(0);
 		WebDriverUtils.scrollTo(250);
-
-		//clearBtn.click();
 
 		// 5秒待つ 
 		Thread.sleep(5000);
