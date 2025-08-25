@@ -116,78 +116,91 @@ public class WebDriverUtils {
 		}
 	}
 
+	/**
+	 * ログインID取得
+	 */
 	public static WebElement getUserName() {
 		WebElement username = webDriver.findElement(By.id("loginId"));
 		return username;
 	}
 
+	/**
+	 * パスワード取得
+	 */
 	public static WebElement getPassword() {
 		WebElement password = webDriver.findElement(By.id("password"));
 		return password;
 	}
 
+	/**
+	 * ログインボタン取得
+	 */
 	public static WebElement getLoginBtn() {
 		WebElement loginBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
 		return loginBtn;
 	}
 
+	/**
+	 * 機能タブ取得
+	 */
 	public static WebElement getFunctionTab() {
 		WebElement functionTab = webDriver.findElement(By.cssSelector(".dropdown-toggle"));
 		return functionTab;
 	}
 
+	/**
+	 * ヘルプリンク取得
+	 */
 	public static WebElement getHelpLink() {
 		WebElement helpLink = webDriver.findElement(By.linkText("ヘルプ"));
 		return helpLink;
 	}
 
+	/**
+	 * よくある質問リンク取得
+	 */
 	public static WebElement getFAQ() {
 		WebElement FAQ = webDriver.findElement(By.linkText("よくある質問"));
 		return FAQ;
 	}
 
+	/**
+	 * キーワード検索取得
+	 */
 	public static WebElement getKeyword() {
 		WebElement keyword = webDriver.findElement(By.cssSelector(".form-control"));
 		return keyword;
 	}
 
+	/**
+	 * 検索ボタン取得
+	 */
 	public static WebElement getSearchBtn() {
 		WebElement searchBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
 		return searchBtn;
 	}
 
+	/**
+	 * クリアボタン取得
+	 */
 	public static void getClearBtn() {
-		//WebElement clearBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
-		//List<WebElement> elements = webDriver.findElement(By.tagName("input"));
-		//WebElement elements = webDriver.findElement(By.tagName("input"));
-		// 拡張for文
-		//for (WebElement we : elements) {
-
-		//}
 
 		webDriver.findElement(By.xpath("//input[@value='クリア']")).click();
-
-		//WebElement second_input_element = clearBtn(1);
-		//return clearBtn;
 	}
 
+	/**
+	 * カテゴリー検索の「【研修関係】」情報取得
+	 */
 	public static WebElement getTrainingRelated() {
 		WebElement trainingRelated = webDriver.findElement(By.partialLinkText("【研修関係】"));
-		//WebElement trainingRelated = webDriver.findElement(By.linkText("【研修関係】"));
 		return trainingRelated;
 	}
 
+	/**
+	 * 「キャンセル料・途中退校について」情報取得
+	 */
 	public static WebElement getSearchResultFAQ() {
-		//WebElement searchresultFAQ = webDriver.findElement(By.cssSelector(".fs18"));
-		//String xpath = "//textarea[@class='gLFyf']";
-		//WebElement searchresultFAQ = webDriver.findElement(By.xpath("//span[text()='完全一致']"));
-		//WebElement searchresultFAQ = webDriver.findElement(By.xpath("//textarea[@class='gLFyf']"));
-		//*[@id="question-h[${status.index}]"]/dt/span[2]
-		//WebElement searchresultFAQ = webDriver
-		//		.findElement(By.xpath("*[@id=\"question-h[${status.index}]\"]/dt/span[2]"));
-
 		WebElement searchresultFAQ = webDriver.findElement(By.xpath("//span[text()='キャンセル料・途中退校について']"));
-
 		return searchresultFAQ;
 	}
 
