@@ -198,6 +198,7 @@ public class Case06 {
 		//searchBtn.click();
 
 		WebElement trainingrelated = WebDriverUtils.getTrainingRelated();
+		trainingrelated.click();
 
 		// 5秒待つ 
 		Thread.sleep(5000);

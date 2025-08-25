@@ -172,12 +172,22 @@ public class WebDriverUtils {
 	}
 
 	public static WebElement getTrainingRelated() {
-		WebElement trainingRelated = webDriver.findElement(By.linkText("【研修関係】"));
+		WebElement trainingRelated = webDriver.findElement(By.partialLinkText("【研修関係】"));
+		//WebElement trainingRelated = webDriver.findElement(By.linkText("【研修関係】"));
 		return trainingRelated;
 	}
 
 	public static WebElement getSearchResultFAQ() {
-		WebElement searchresultFAQ = webDriver.findElement(By.cssSelector(".fs18"));
+		//WebElement searchresultFAQ = webDriver.findElement(By.cssSelector(".fs18"));
+		//String xpath = "//textarea[@class='gLFyf']";
+		//WebElement searchresultFAQ = webDriver.findElement(By.xpath("//span[text()='完全一致']"));
+		//WebElement searchresultFAQ = webDriver.findElement(By.xpath("//textarea[@class='gLFyf']"));
+		//*[@id="question-h[${status.index}]"]/dt/span[2]
+		//WebElement searchresultFAQ = webDriver
+		//		.findElement(By.xpath("*[@id=\"question-h[${status.index}]\"]/dt/span[2]"));
+
+		WebElement searchresultFAQ = webDriver.findElement(By.xpath("//span[text()='キャンセル料・途中退校について']"));
+
 		return searchresultFAQ;
 	}
 
