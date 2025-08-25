@@ -1,23 +1,20 @@
-package jp.co.sss.lms.ct.f02_faq;
+//package jp.co.sss.lms.ut.controller;
+package jp.co.sss.lms.ut.f02_faq;
 
-import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -33,16 +30,16 @@ import jp.co.sss.lms.util.LoginUserUtil;
 import jp.co.sss.lms.util.MessageUtil;
 
 /**
- * 結合テスト よくある質問機能
- * ケース04
- * @author holy
- */
+ * JUnitによる機能試験(ホワイトボックステスト)_テストコードサンプル
+ * コントローラーを試験する際のサンプルコードです。
+ * サービスクラス等と違い、MockMvcのコントローラー独自の記法があるので注意してください。
+ * MockMvcについてはテスト技法（JUnit・Mockito・MockMVC）_講義資料.pdfの34ページを参照）
+ * 
+ * */
+@SuppressWarnings("unused")
 @SpringBootTest
-@TestMethodOrder(OrderAnnotation.class)
-@DisplayName("ケース04 よくある質問画面への遷移")
 public class Case04 {
 
-	// Spring MVCのモック
 	public MockMvc mockMvc;
 
 	public MockHttpServletRequestBuilder getRequest;
@@ -63,69 +60,79 @@ public class Case04 {
 	@InjectMocks
 	private LoginController loginController;
 
-	/** 前処理 */
+	/**
+	 * 事前準備.<br>
+	 * テストクラス実行時に1度だけ実行します。
+	 */
 	@BeforeAll
-	static void before() {
-		createDriver();
+	public static void setUpClass() {
+		WebDriverUtils.createDriver();
 	}
 
+	/**
+	 * setupメソッド
+	 * 
+	 * Tips: BeforeEachアノテーションを付与するとテストメソッドを実行する前に必ず実行される（必要のない場合、省略可）
+	 *       テストクラス全体で事前に設定すべき処理を記載することでソースの記載量を削減できる。
+	 * */
 	@BeforeEach
-	void setup() {
-		//Spring MVCにテスト対象のコントローラを設定する
-		this.mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
+	public void setup() {
+		// Spring MVCにテスト対象のコントローラを設定する 
+		mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
 
 		// 既に完成されているクラスに対して、@BeforEachにReflectionTestUtilsを設定することで、各テストメソッドで呼び出す処理を省略出来る。
 		ReflectionTestUtils.setField(loginController, "messageUtil", messageUtil);
 	}
 
-	/** 後処理 */
-	@AfterAll
-	static void after() {
-		closeDriver();
+	/**
+	 * tearDownメソッド
+	 * 
+	 * Tips:AfterEachアノテーションを付与すると各テストメソッドが終了した後にに必ず実行される。（必要のない場合、省略可）
+	 * 　　　　　
+	 * */
+	@AfterEach
+	public void tearDown() {
+		// chromeドライバーを終了する
+		WebDriverUtils.closeDriver();
 	}
 
+	/**
+	 * Case.1_1 ログインコントローラー試験　初期表示テスト(未ログイン時 正常終了)
+	 * ■対象メソッド：index() 
+	 * ■試験パラメータ：なし
+	 * ■試験観点：
+	 *  ・正常終了すること
+	 *  ・HTTPステータスが「200」であること
+	 *  ・返却されるViewのパスが「/login/index」であること
+	 * @throws InterruptedException 
+	 *  
+	 * @throws Exception 
+	 * */
 	@Test
-	@Order(1)
-	@DisplayName("テスト01 トップページURLでアクセス")
-	void test01() {
-		// 指定のURLの画面を開く
-		goTo("http://localhost:8080/lms/");
-
-		scrollTo(0);
-
-		//自分自身をインスタンス化して渡す
-		Case04 instance = new Case04();
-
-		getEvidence(instance);
-	}
-
-	@Test
-	@Order(2)
-	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
-	void test02() throws InterruptedException {
+	public void testCase4_1() throws InterruptedException {
 		String suffix = null;
 
 		//自分自身をインスタンス化して渡す
 		Case04 instance = new Case04();
 
 		// 指定のURLの画面を開く
-		goTo("http://localhost:8080/lms/");
-		scrollTo(0);
+		WebDriverUtils.goTo("http://localhost:8080/lms/");
+		WebDriverUtils.scrollTo(0);
 
 		suffix = "01_ログイン前(登録済ユーザー)";
 
-		getEvidence(instance, suffix);
+		WebDriverUtils.getEvidence(instance, suffix);
 
 		// ユーザー名とパスワードを入力
 
-		WebElement username = getUserName();
-		WebElement password = getPassword();
+		WebElement username = WebDriverUtils.getUserName();
+		WebElement password = WebDriverUtils.getPassword();
 
 		username.sendKeys("StudentAA01");
 		password.sendKeys("StudentAA01A");
 
 		// ログインボタンをクリック
-		WebElement loginBtn = getLoginBtn();
+		WebElement loginBtn = WebDriverUtils.getLoginBtn();
 
 		loginBtn.click();
 
@@ -134,23 +141,13 @@ public class Case04 {
 
 		suffix = "02_ログイン後(登録済ユーザー)";
 
-		getEvidence(instance, suffix);
-	}
-
-	@Test
-	@Order(3)
-	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
-	void test03() throws InterruptedException {
-		String suffix = null;
-
-		//自分自身をインスタンス化して渡す
-		Case04 instance = new Case04();
+		WebDriverUtils.getEvidence(instance, suffix);
 
 		// 3秒待つ 
 		Thread.sleep(3000);
 
 		// 機能タブをクリック
-		WebElement functionTab = getFunctionTab();
+		WebElement functionTab = WebDriverUtils.getFunctionTab();
 
 		functionTab.click();
 
@@ -158,29 +155,19 @@ public class Case04 {
 		Thread.sleep(3000);
 
 		// ヘルプリンクをクリック
-		WebElement helpLink = getHelpLink();
+		WebElement helpLink = WebDriverUtils.getHelpLink();
 
 		helpLink.click();
 
 		suffix = "03_ヘルプ画面遷移";
 
-		getEvidence(instance, suffix);
-	}
-
-	@Test
-	@Order(4)
-	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
-	void test04() throws InterruptedException {
-		String suffix = null;
-
-		//自分自身をインスタンス化して渡す
-		Case04 instance = new Case04();
+		WebDriverUtils.getEvidence(instance, suffix);
 
 		// 5秒待つ 
 		Thread.sleep(5000);
 
 		// よくある質問リンクをクリック
-		WebElement FAQ = getFAQ();
+		WebElement FAQ = WebDriverUtils.getFAQ();
 
 		FAQ.click();
 		// 5秒待つ 
@@ -188,11 +175,11 @@ public class Case04 {
 
 		suffix = "04-1_よくある質問画面遷移(相対パスでクリック)";
 
-		getEvidence(instance, suffix);
+		WebDriverUtils.getEvidence(instance, suffix);
 
 		// 指定のURLの画面を開く
-		goTo("http://localhost:8080/lms/faq");
-		scrollTo(0);
+		WebDriverUtils.goTo("http://localhost:8080/lms/faq");
+		WebDriverUtils.scrollTo(0);
 		// 5秒待つ 
 		Thread.sleep(5000);
 
@@ -200,27 +187,36 @@ public class Case04 {
 
 		WebDriverUtils.getEvidence(instance, suffix);
 
+		// セッション情報を事前に設定する場合、MockHttpSessionを使用する
+		MockHttpSession session = new MockHttpSession();
+		ReflectionTestUtils.setField(loginController, "session", session);
+
 		// モック対象メソッドの返却値を設定
 		when(loginUserUtil.isLogin()).thenReturn(true);
-		when(loginUserUtil.isStudent()).thenReturn(true);
+		when(loginUserUtil.isAdmin()).thenReturn(true);
 		when(infoService.getInfo()).thenReturn(new InfoDto());
-		when(loginUserUtil.sendDisp()).thenReturn("redirect:/course/detail");
+		when(loginUserUtil.sendDisp()).thenReturn("redirect:/course/list");
 
 		// コントローラー記載のRequetMappingのパスを指定する
 		getRequest = MockMvcRequestBuilders.get("/");
 		try {
-			// 試験開始
-			// getRequestの情報を基にコントローラーを呼び出す。Case1_1のMvcResultは使用しない場合、省略可能
-			mockMvc.perform(getRequest) // コントローラーの呼び出し
-					//.andDo(print()) // リクエスト情報をコンソールにprintする（デバッグ用）
-					.andExpect(status().isFound()) // 実行結果のHTTPステータスが302(リダイレクト)かどうか検証する
-					.andExpect(redirectedUrl("/course/detail")); // リダイレクトパスが正しいか検証する(ログイン機能のみ検証する)
+			// getRequestの情報を基にコントローラーを呼び出す
+			mockMvc.perform(getRequest)
+					//.andDo(print()) 
+					.andExpect(status().isFound())
+					.andExpect(redirectedUrl("/course/list"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(new Object() {
 			}.getClass().getEnclosingMethod().getName());
+		} finally {
+			// 数秒待ってからブラウザを閉じる
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException ignored) {
+			}
+			WebDriverUtils.closeDriver();
 		}
 	}
-
 }
