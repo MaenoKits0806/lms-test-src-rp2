@@ -275,4 +275,22 @@ public class WebDriverUtils {
 		return submitBtn;
 	}
 
+	/**
+	 * 次へボタン取得
+	 */
+	public static WebElement getNextBtn() {
+		WebElement nextBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
+		return nextBtn;
+	}
+
+	/**
+	 * 次へボタン取得
+	 */
+	public static String getSecurityConsentErorrMessage() {
+
+		WebElement element = webDriver.findElement(By.xpath("//div[text()='セキュリティ規約への同意は必須です。']"));
+		String securityconsentErorrMessage = element.getText(); // テキストを取得
+		return securityconsentErorrMessage;
+	}
+
 }
