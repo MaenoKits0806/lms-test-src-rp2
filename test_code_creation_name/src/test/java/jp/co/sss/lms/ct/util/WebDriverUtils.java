@@ -3,6 +3,7 @@ package jp.co.sss.lms.ct.util;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -211,6 +212,67 @@ public class WebDriverUtils {
 	public static WebElement getSearchResultFAQ() {
 		WebElement searchresultFAQ = webDriver.findElement(By.xpath("//span[text()='キャンセル料・途中退校について']"));
 		return searchresultFAQ;
+	}
+
+	/**
+	 * 「未提出について」情報取得 ★使用していない
+	 */
+	public static WebElement getNotSubmitted() {
+		//WebElement notSubmitted = webDriver.findElement(By.xpath("//span[text()='未提出']"));
+		//return notSubmitted;
+		List<WebElement> elements = webDriver.findElements(By.xpath("//span[text()='未提出']"));
+		if (elements.size() > 1) {
+			WebElement notSubmitted = elements.get(2); // 0が最初の要素、1が2番目の要素
+			// secondElementに対して操作を行う
+			return notSubmitted;
+		}
+
+		return null;
+	}
+
+	/**
+	 * 「未提出について」情報取得
+	 */
+	public static WebElement getDetailBtn() {
+		//WebElement notSubmitted = webDriver.findElement(By.xpath("//span[text()='未提出']"));
+		//WebElement detailBtn = webDriver
+		//		.findElement(By.xpath("//input[@value='詳細']"));
+		List<WebElement> elements = webDriver.findElements(By.xpath("//*[@class='btn btn-default']"));
+		if (elements.size() > 1) {
+			WebElement detailBtn = elements.get(3); // 0が最初の要素、1が2番目の要素
+			// secondElementに対して操作を行う
+			return detailBtn;
+		}
+
+		return null;
+	}
+
+	/**
+	 * 「日報【デモ】を提出する」情報取得
+	 */
+	public static WebElement getDailyReportBtn() {
+		WebElement dailyreportBtn = webDriver
+				.findElement(By.xpath("//input[@value='日報【デモ】を提出する']"));
+		//WebElement dailyreportBtn = webDriver
+		//		.findElement(By.xpath("//input[@value='提出済み日報【デモ】を確認する']"));
+
+		return dailyreportBtn;
+	}
+
+	/**
+	 * 報告内容情報取得
+	 */
+	public static WebElement getReportContent() {
+		WebElement reportContent = webDriver.findElement(By.id("content_0"));
+		return reportContent;
+	}
+
+	/**
+	 * 報告内容提出ボタン取得
+	 */
+	public static WebElement getSubmitBtn() {
+		WebElement submitBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
+		return submitBtn;
 	}
 
 }
