@@ -284,13 +284,132 @@ public class WebDriverUtils {
 	}
 
 	/**
-	 * 次へボタン取得
+	 * セキュリティ規約エラーメッセージ取得
 	 */
 	public static String getSecurityConsentErorrMessage() {
 
 		WebElement element = webDriver.findElement(By.xpath("//div[text()='セキュリティ規約への同意は必須です。']"));
 		String securityconsentErorrMessage = element.getText(); // テキストを取得
 		return securityconsentErorrMessage;
+	}
+
+	/**
+	 * ラジオボタン取得(非選択)
+	 */
+	public static WebElement getRadioNegativeBtn() {
+		//WebElement radioBtn = webDriver.findElement(By.xpath("//input[value()='1']"));
+		WebElement radionegativeBtn = webDriver.findElement(By.name("securityFlg"));
+
+		//radionegativeBtn.click();
+		Boolean isSelected = radionegativeBtn.isSelected();
+		if (isSelected) {
+			return null;
+		}
+		return radionegativeBtn;
+	}
+
+	/**
+	 * ラジオボタン取得(選択)
+	 */
+	public static WebElement getRadioAcitveBtn() {
+		//WebElement radioBtn = webDriver.findElement(By.xpath("//input[value()='1']"));
+		WebElement radioacitveBtn = webDriver.findElement(By.name("securityFlg"));
+
+		radioacitveBtn.click();
+		Boolean isSelected = radioacitveBtn.isSelected();
+		if (isSelected) {
+			return radioacitveBtn;
+		}
+
+		return null;
+	}
+
+	/**
+	 * 変更ボタン情報取得
+	 */
+	public static WebElement getChangeBtn() {
+		List<WebElement> elements = webDriver.findElements(By.xpath("//*[@class='btn btn-primary']"));
+		if (elements.size() > 1) {
+			WebElement changeBtn = elements.get(1); // 0が最初の要素、1が2番目の要素
+			// secondElementに対して操作を行う
+			return changeBtn;
+		}
+
+		return null;
+	}
+
+	/**
+	 * モーダル表示の変更ボタン情報取得
+	 */
+	public static WebElement getChangeModalBtn() {
+		//		List<WebElement> elements = webDriver.findElements(By.xpath("//*[@class='btn btn-primary']"));
+		//		if (elements.size() > 1) {
+		//			WebElement changeBtn = elements.get(1); // 0が最初の要素、1が2番目の要素
+		//			// secondElementに対して操作を行う
+		//			return changeBtn;
+		//		}
+		//
+		//		return null;
+
+		WebElement changemodalBtn = webDriver.findElement(By.id("upd-btn"));
+		return changemodalBtn;
+
+	}
+
+	/**
+	 * 現在のパスワード取得
+	 */
+	public static WebElement getCurrentPassword() {
+		WebElement currentpassword = webDriver.findElement(By.id("currentPassword"));
+		return currentpassword;
+	}
+
+	/**
+	 * 新しいパスワード取得
+	 */
+	public static WebElement getNewPassword() {
+		WebElement newpassword = webDriver.findElement(By.id("password"));
+		return newpassword;
+	}
+
+	/**
+	 * 確認パスワード取得
+	 */
+	public static WebElement getCheckPassword() {
+		WebElement checkpassword = webDriver.findElement(By.id("passwordConfirm"));
+		return checkpassword;
+	}
+
+	/**
+	 * 長いパスワードエラーメッセージ取得
+	 */
+	public static String getLongPasswordErorrMessage() {
+
+		WebElement element = webDriver.findElement(By.xpath("//span[text()='パスワードの長さが最大値(20)を超えています。']"));
+		String longpasswordErorrMessage = element.getText(); // テキストを取得
+		return longpasswordErorrMessage;
+	}
+
+	/**
+	 * ポリシーに合わないパスワードエラーメッセージ取得
+	 */
+	public static String getNotMatchPolicyErorrMessage() {
+
+		WebElement element = webDriver.findElement(
+				By.xpath("//span[text()='「パスワード」には半角英数字のみ使用可能です。また、半角英大文字、半角英小文字、数字を含めた8～20文字を入力してください。']"));
+		String notmatchpolicyErorrMessage = element.getText(); // テキストを取得
+		return notmatchpolicyErorrMessage;
+	}
+
+	/**
+	 * 一致しない確認パスワードエラーメッセージ取得
+	 */
+	public static String getNotMatchCheckErorrMessage() {
+
+		WebElement element = webDriver.findElement(
+				By.xpath("//span[text()='パスワードは英大文字、英小文字、数字の3文字種を混合させた8文字以上を入力してください。']"));
+		String notmatchCheckErorrMessage = element.getText(); // テキストを取得
+		return notmatchCheckErorrMessage;
 	}
 
 }

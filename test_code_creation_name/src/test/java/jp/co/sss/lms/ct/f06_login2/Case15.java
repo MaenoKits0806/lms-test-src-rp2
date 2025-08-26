@@ -154,6 +154,10 @@ public class Case15 {
 
 		scrollTo(250);
 
+		WebElement radionegativeBtn = WebDriverUtils.getRadioNegativeBtn();
+
+		//radionegativeBtn.click();
+
 		// 次へボタンをクリック
 		WebElement nextBtn = WebDriverUtils.getNextBtn();
 
