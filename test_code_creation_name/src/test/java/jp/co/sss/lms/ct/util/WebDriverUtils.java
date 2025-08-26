@@ -412,4 +412,41 @@ public class WebDriverUtils {
 		return notmatchCheckErorrMessage;
 	}
 
+	/**
+	 * 勤怠タブ取得
+	 */
+	public static WebElement getAttendance() {
+		WebElement attendance = webDriver.findElement(By.linkText("勤怠"));
+		return attendance;
+	}
+
+	/**
+	 * 打刻の出勤情報取得
+	 */
+	public static WebElement getAttendanceAtWorkBtn() {
+		WebElement attendanceatworkBtn = webDriver.findElement(By.name("punchIn"));
+
+		//Alert alert = webDriver.switchTo().alert();
+		//alert.accept();
+
+		//		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		//		WebElement result = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("result")));
+		//Alert alert = webDriver.switchTo().alert();
+		//alert.accept();
+
+		// OKボタン押下
+		//webDriver.switchTo().alert().accept();
+		//attendanceatworkBtn.alert().accept();
+		return attendanceatworkBtn;
+	}
+
+	/**
+	 * 打刻の退勤情報取得
+	 */
+	public static WebElement getLeavingWorkBtn() {
+		WebElement leavingworkBtn = webDriver.findElement(By.name("punchOut"));
+		//webDriver.switchTo().alert().accept();
+		return leavingworkBtn;
+	}
+
 }
