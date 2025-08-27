@@ -215,28 +215,76 @@ public class WebDriverUtils {
 	}
 
 	/**
-	 * 「未提出について」情報取得 ★使用していない
+	 * 「未提出について」情報取得 ★使用している
 	 */
 	public static WebElement getNotSubmitted() {
-		//WebElement notSubmitted = webDriver.findElement(By.xpath("//span[text()='未提出']"));
-		//return notSubmitted;
-		List<WebElement> elements = webDriver.findElements(By.xpath("//span[text()='未提出']"));
-		if (elements.size() > 1) {
-			WebElement notSubmitted = elements.get(2); // 0が最初の要素、1が2番目の要素
-			// secondElementに対して操作を行う
-			return notSubmitted;
+		List<WebElement> elements = webDriver.findElements(By.xpath("//table/tbody"));
+
+		int count = 1;
+		for (WebElement els : elements) {
+			//int els2 = count;
+			String innerText = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[3]")).getText(); // テキストを取得
+			String innerText2 = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[2]")).getText(); // テキストを取得
+			if (innerText.equals("未提出")) {
+				WebElement notSubmitted = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[5]"));
+				//notSubmitted.click();
+
+				return notSubmitted;
+			}
+			count++;
 		}
+
+		//		String innerText = webDriver.findElement(By.xpath("//table/tbody/tr[1]/td[1]")).getText();
+		//		String innerText2 = webDriver.findElement(By.xpath("//table/tbody/tr[1]/td[2]")).getText();
+		//		String innerText3 = webDriver.findElement(By.xpath("//table/tbody/tr[1]/td[3]")).getText();
+		//		String innerText4 = webDriver.findElement(By.xpath("//table/tbody/tr[1]/td[4]")).getText();
+		//		String innerText5 = webDriver.findElement(By.xpath("//table/tbody/tr[1]/td[5]")).getText();
+		//		String innerText6 = webDriver.findElement(By.xpath("//table/tbody/tr[2]/td[1]")).getText();
+		//		String innerText7 = webDriver.findElement(By.xpath("//table/tbody/tr[3]/td[1]")).getText();
+		//
+		//		for (WebElement els : elements) {
+		//			String mozi = els.getText(); // テキストを取得
+		//			if (mozi == "未提出") {
+		//				//WebElement count = els;
+		//				//return count;
+		//				if (elements2.size() > 1) {
+		//					WebElement notSubmitted = elements2.get(0); // 0が最初の要素、1が2番目の要素
+		//					// secondElementに対して操作を行う
+		//					return notSubmitted;
+		//				}
+		//			}
+		//		}
 
 		return null;
 	}
 
 	/**
-	 * 「未提出について」情報取得
+	 * 「提出について」情報取得 ★使用している
+	 */
+	public static WebElement getSubmitted() {
+		List<WebElement> elements = webDriver.findElements(By.xpath("//table/tbody"));
+		int count = 1;
+		for (WebElement els : elements) {
+			String innerText = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[3]")).getText(); // テキストを取得
+			String innerText2 = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[2]")).getText(); // テキストを取得
+			if (innerText.equals("提出済み")) {
+				WebElement Submitted = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[5]"));
+				//Submitted.click();
+				return Submitted;
+			}
+			count++;
+		}
+		return null;
+	}
+
+	/**
+	 * 「未提出について」情報取得 ★使用していない
 	 */
 	public static WebElement getDetailBtn() {
 		//WebElement notSubmitted = webDriver.findElement(By.xpath("//span[text()='未提出']"));
 		//WebElement detailBtn = webDriver
 		//		.findElement(By.xpath("//input[@value='詳細']"));
+
 		List<WebElement> elements = webDriver.findElements(By.xpath("//*[@class='btn btn-default']"));
 		if (elements.size() > 1) {
 			WebElement detailBtn = elements.get(3); // 0が最初の要素、1が2番目の要素
@@ -260,6 +308,18 @@ public class WebDriverUtils {
 	}
 
 	/**
+	 * 「提出済み日報【デモ】を確認する」情報取得
+	 */
+	public static WebElement getDailyReportSubmittedBtn() {
+		WebElement dailyreportsubmittedBtn = webDriver
+				.findElement(By.xpath("//input[@value='提出済み日報【デモ】を確認する']"));
+		//WebElement dailyreportBtn = webDriver
+		//		.findElement(By.xpath("//input[@value='提出済み日報【デモ】を確認する']"));
+
+		return dailyreportsubmittedBtn;
+	}
+
+	/**
 	 * 報告内容情報取得
 	 */
 	public static WebElement getReportContent() {
@@ -273,6 +333,102 @@ public class WebDriverUtils {
 	public static WebElement getSubmitBtn() {
 		WebElement submitBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
 		return submitBtn;
+	}
+
+	/**
+	 * 「ようこそ受験生○○さん」情報取得
+	 */
+	public static WebElement getWelcomeExaminee(String examinee) {
+		//WebElement welcomeexaminee = webDriver.findElement(By.partialLinkText("ようこそ受講生ＡＡ１さん"));
+		WebElement welcomeexaminee = webDriver.findElement(By.partialLinkText(examinee));
+		return welcomeexaminee;
+	}
+
+	/**
+	 * 該当レポート情報取得(詳細ボタン) ★使用している
+	 */
+	public static WebElement getApplicableReportDetailBtn(String reportdate) {
+		//List<WebElement> elements = webDriver.findElements(By.xpath("//table[3]/tbody"));
+		List<WebElement> elements = webDriver.findElements(By.xpath("//table[3]/tbody/tr"));
+		int count = 2;
+		//		int kazu1 = webDriver.findElement(By.xpath("//table[1]/tbody")).findElements(By.tagName("tr")).size();
+		//		int kazu2 = webDriver.findElement(By.xpath("//table[2]/tbody")).findElements(By.tagName("tr")).size();
+		//		int kazu3 = webDriver.findElement(By.xpath("//table[3]/tbody")).findElements(By.tagName("tr")).size();
+		for (WebElement els : elements) {
+			//String innerText0 = webDriver.findElement(By.xpath("//table[3]/tbody/tr[2]/td[1]")).getText();
+			String innerText = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[1]")).getText(); // テキストを取得
+			//String innerText2 = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[4]")).getText(); // テキストを取得
+			if (innerText.equals(reportdate)) {
+				//if (innerText.equals("2022年10月5日(水)")) {
+				//WebElement applicablereport = webDriver
+				//		.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[5]"));
+				WebElement applicablereportdetail = webDriver
+						.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[5]/form[1]"));
+				//Submitted.click();
+				return applicablereportdetail;
+			}
+			count++;
+		}
+		return null;
+	}
+
+	/**
+	 * 該当レポート情報取得(修正するボタン) ★使用している
+	 */
+	public static WebElement getApplicableReportCorrectionBtn(String reportdate, String reportname) {
+		List<WebElement> elements = webDriver.findElements(By.xpath("//table[3]/tbody/tr"));
+		int count = 2;
+		for (WebElement els : elements) {
+			String innerText = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[1]")).getText(); // テキストを取得
+			String innerText2 = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[2]")).getText(); // テキストを取得
+			if (innerText.equals(reportdate) && innerText2.equals(reportname)) {
+				WebElement applicablereportcorrectionBtn = webDriver
+						.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[5]/form[2]"));
+				return applicablereportcorrectionBtn;
+			}
+			count++;
+		}
+		return null;
+	}
+
+	/**
+	 * 学習項目情報取得
+	 */
+	public static WebElement getLearningTopic() {
+		WebElement learningtopic = webDriver.findElement(By.id("intFieldName_0"));
+		return learningtopic;
+	}
+
+	/**
+	 * 理解度の達成度情報取得
+	 */
+	public static WebElement getComprehensionLevel() {
+		WebElement comprehensionlevel = webDriver.findElement(By.id("intFieldName_0"));
+		return comprehensionlevel;
+	}
+
+	/**
+	 * 目標の達成度情報取得
+	 */
+	public static WebElement getGoalAchievement() {
+		WebElement goalachievement = webDriver.findElement(By.id("content_0"));
+		return goalachievement;
+	}
+
+	/**
+	 * 所感情報取得
+	 */
+	public static WebElement getImpressions() {
+		WebElement impressions = webDriver.findElement(By.id("content_1"));
+		return impressions;
+	}
+
+	/**
+	 * 一週間の振り返り情報取得
+	 */
+	public static WebElement getReviewOfTheWeek() {
+		WebElement reviewoftheweek = webDriver.findElement(By.id("content_2"));
+		return reviewoftheweek;
 	}
 
 	/**
