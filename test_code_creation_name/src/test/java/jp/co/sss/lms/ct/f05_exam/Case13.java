@@ -255,9 +255,10 @@ public class Case13 {
 		Thread.sleep(5000);
 
 		// ログインボタンをクリック
-		WebElement examanswersubmitBtn = WebDriverUtils.getExamAnswerSubmitBtn();
+		//WebElement examanswersubmitBtn = WebDriverUtils.getExamAnswerSubmitBtn();
+		WebDriverUtils.getExamAnswerSubmitBtn();
 
-		examanswersubmitBtn.click();
+		//examanswersubmitBtn.click();
 
 		// 5秒待つ 
 		Thread.sleep(5000);
@@ -272,8 +273,32 @@ public class Case13 {
 	@Test
 	@Order(8)
 	@DisplayName("テスト08 「戻る」ボタンを押下し試験開始画面に遷移後当該試験の結果が反映される")
-	void test08() {
-		// TODO ここに追加
+	void test08() throws InterruptedException {
+		String suffix = null;
+
+		//自分自身をインスタンス化して渡す
+		Case13 instance = new Case13();
+
+		// 5秒待つ 
+		scrollTo(10000);
+		Thread.sleep(5000);
+
+		// ログインボタンをクリック
+		//WebElement examanswersubmitBtn = WebDriverUtils.getExamAnswerSubmitBtn();
+		WebElement exambackBtn = WebDriverUtils.getExamBackBtn();
+
+		exambackBtn.click();
+
+		//examanswersubmitBtn.click();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "01_遷移後当該試験の結果が反映される";
+
+		getEvidence(instance, suffix);
+
+		assertEquals("試験【ITリテラシー①】 | LMS", getTitle());
 	}
 
 }

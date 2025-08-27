@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -311,12 +312,30 @@ public class WebDriverUtils {
 	/**
 	 * 試験確認画面の試験回答送信情報取得 ★使用している
 	 */
-	public static WebElement getExamAnswerSubmitBtn() {
-		//WebElement examanswersubmitBtn = webDriver
-		//		.findElement(By.xpath("//input[@value='回答を送信する']"));
+	public static void getExamAnswerSubmitBtn() {
+		//WebElement examanswersubmitBtn = webDriver.findElement(By.id("sendButton"));
+		webDriver.findElement(By.id("sendButton")).click();
 
-		WebElement examanswersubmitBtn = webDriver.findElement(By.id("sendButton"));
-		return examanswersubmitBtn;
+		//アラートが出るまで待つ
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+
+		//アラートに切り替える
+		Alert alert = webDriver.switchTo().alert();
+
+		//OKをクリック
+		alert.accept();
+
+		//return examanswersubmitBtn;
+	}
+
+	/**
+	 * 試験結果画面の戻る情報取得 ★使用している
+	 */
+	public static WebElement getExamBackBtn() {
+		WebElement exambackBtn = webDriver
+				.findElement(By.xpath("//input[@value='戻る']"));
+		return exambackBtn;
 	}
 
 	/**
