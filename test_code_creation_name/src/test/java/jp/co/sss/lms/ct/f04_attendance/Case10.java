@@ -171,9 +171,10 @@ public class Case10 {
 		Case10 instance = new Case10();
 
 		// 勤怠タブをクリック
-		WebElement attendanceatworkBtn = WebDriverUtils.getAttendanceAtWorkBtn();
+		//WebElement attendanceatworkBtn = WebDriverUtils.getAttendanceAtWorkBtn();
+		WebDriverUtils.getAttendanceAtWorkBtn();
 
-		attendanceatworkBtn.click();
+		//attendanceatworkBtn.click();
 		// 5秒待つ 
 		Thread.sleep(5000);
 
@@ -195,9 +196,10 @@ public class Case10 {
 		Case10 instance = new Case10();
 
 		// 勤怠タブをクリック
-		WebElement leavingworkBtn = WebDriverUtils.getLeavingWorkBtn();
+		//WebElement leavingworkBtn = WebDriverUtils.getLeavingWorkBtn();
+		WebDriverUtils.getLeavingWorkBtn();
 
-		leavingworkBtn.click();
+		//leavingworkBtn.click();
 		// 5秒待つ 
 		Thread.sleep(5000);
 

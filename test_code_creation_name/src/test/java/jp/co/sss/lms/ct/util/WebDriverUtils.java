@@ -692,30 +692,42 @@ public class WebDriverUtils {
 	/**
 	 * 打刻の出勤情報取得
 	 */
-	public static WebElement getAttendanceAtWorkBtn() {
-		WebElement attendanceatworkBtn = webDriver.findElement(By.name("punchIn"));
+	public static void getAttendanceAtWorkBtn() {
+		//WebElement attendanceatworkBtn = webDriver.findElement(By.name("punchIn"));
 
-		//Alert alert = webDriver.switchTo().alert();
-		//alert.accept();
+		//return attendanceatworkBtn;
+		//WebElement examanswersubmitBtn = webDriver.findElement(By.id("sendButton"));
+		webDriver.findElement(By.name("punchIn")).click();
 
-		//		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-		//		WebElement result = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("result")));
-		//Alert alert = webDriver.switchTo().alert();
-		//alert.accept();
+		//アラートが出るまで待つ
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
 
-		// OKボタン押下
-		//webDriver.switchTo().alert().accept();
-		//attendanceatworkBtn.alert().accept();
-		return attendanceatworkBtn;
+		//アラートに切り替える
+		Alert alert = webDriver.switchTo().alert();
+
+		//OKをクリック
+		alert.accept();
+
 	}
 
 	/**
 	 * 打刻の退勤情報取得
 	 */
-	public static WebElement getLeavingWorkBtn() {
-		WebElement leavingworkBtn = webDriver.findElement(By.name("punchOut"));
-		//webDriver.switchTo().alert().accept();
-		return leavingworkBtn;
+	public static void getLeavingWorkBtn() {
+		//WebElement leavingworkBtn = webDriver.findElement(By.name("punchOut"));
+		//return leavingworkBtn;
+		webDriver.findElement(By.name("punchOut")).click();
+
+		//アラートが出るまで待つ
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+
+		//アラートに切り替える
+		Alert alert = webDriver.switchTo().alert();
+
+		//OKをクリック
+		alert.accept();
 	}
 
 }
