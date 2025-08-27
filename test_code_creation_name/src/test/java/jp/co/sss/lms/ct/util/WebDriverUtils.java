@@ -261,6 +261,65 @@ public class WebDriverUtils {
 	}
 
 	/**
+	 * 「試験有」情報取得 ★使用している
+	 */
+	public static WebElement getExam() {
+		List<WebElement> elements = webDriver.findElements(By.xpath("//table/tbody"));
+
+		int count = 1;
+		for (WebElement els : elements) {
+			String innerText = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[4]")).getText(); // テキストを取得
+			//String innerText2 = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[2]")).getText(); // テキストを取得
+			if (innerText.equals("試験有")) {
+				WebElement exam = webDriver.findElement(By.xpath("//table/tbody/tr[ " + count + "]/td[5]"));
+				//notSubmitted.click();
+
+				return exam;
+			}
+			count++;
+		}
+		return null;
+	}
+
+	/**
+	 * セクション詳細画面の詳細情報取得 ★使用している
+	 */
+	public static WebElement getExamDetailBtn() {
+		WebElement examdetailBtn = webDriver
+				.findElement(By.xpath("//input[@value='詳細']"));
+		return examdetailBtn;
+	}
+
+	/**
+	 * 試験開始画面の試験開始情報取得 ★使用している
+	 */
+	public static WebElement getExamStartBtn() {
+		WebElement examstartBtn = webDriver
+				.findElement(By.xpath("//input[@value='試験を開始する']"));
+		return examstartBtn;
+	}
+
+	/**
+	 * 試験画面の試験確認情報取得 ★使用している
+	 */
+	public static WebElement getExamConfirmationBtn() {
+		WebElement examconfirmationBtn = webDriver
+				.findElement(By.xpath("//input[@value='確認画面へ進む']"));
+		return examconfirmationBtn;
+	}
+
+	/**
+	 * 試験確認画面の試験回答送信情報取得 ★使用している
+	 */
+	public static WebElement getExamAnswerSubmitBtn() {
+		//WebElement examanswersubmitBtn = webDriver
+		//		.findElement(By.xpath("//input[@value='回答を送信する']"));
+
+		WebElement examanswersubmitBtn = webDriver.findElement(By.id("sendButton"));
+		return examanswersubmitBtn;
+	}
+
+	/**
 	 * 「提出について」情報取得 ★使用している
 	 */
 	public static WebElement getSubmitted() {
