@@ -13,6 +13,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+//import com.amazonaws.services.dynamodbv2.model.Select;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
@@ -392,18 +394,43 @@ public class WebDriverUtils {
 	}
 
 	/**
+	 * 学習サイズmax情報取得
+	 */
+	public static void getDisplayMax() {
+		webDriver.manage().window().maximize();
+	}
+
+	/**
 	 * 学習項目情報取得
 	 */
 	public static WebElement getLearningTopic() {
 		WebElement learningtopic = webDriver.findElement(By.id("intFieldName_0"));
+		//webDriver.manage().window().maximize();
 		return learningtopic;
 	}
 
 	/**
 	 * 理解度の達成度情報取得
 	 */
-	public static WebElement getComprehensionLevel() {
-		WebElement comprehensionlevel = webDriver.findElement(By.id("intFieldName_0"));
+	public static Select getComprehensionLevel() {
+		//WebElement element = webDriver.findElement(By.xpath("xpath"));
+		//Select(element).selectByValue("value"); // valueの値
+
+		//Select drpCountry = new Select(webDriver.findElement(By.name("country")));
+		//drpCountry.selectByVisibleText("ANTARCTICA");
+
+		//WebElement comprehensionlevel = webDriver.findElement(By.xpath("xpath"));
+		//Select(comprehensionlevel).selectByValue("value");
+
+		//Select comprehensionlevel = webDriver.findElement(By.id("intFieldValue_0"));
+		Select comprehensionlevel = new Select(webDriver.findElement(By.id("intFieldValue_0")));
+
+		//Select select = new Select(comprehensionlevel);
+		//Select select = new Select(webDriver.findElement(By.id("intFieldValue_0")));
+		//select.selectByValue("3");
+
+		//comprehensionlevel.selectByValue("3");
+
 		return comprehensionlevel;
 	}
 
@@ -429,6 +456,14 @@ public class WebDriverUtils {
 	public static WebElement getReviewOfTheWeek() {
 		WebElement reviewoftheweek = webDriver.findElement(By.id("content_2"));
 		return reviewoftheweek;
+	}
+
+	/**
+	 * 週報レポートの提出ボタン取得
+	 */
+	public static WebElement getWeeklyReportSubmitBtn() {
+		WebElement weeklyreportsubmitBtn = webDriver.findElement(By.cssSelector(".btn.btn-primary"));
+		return weeklyreportsubmitBtn;
 	}
 
 	/**
