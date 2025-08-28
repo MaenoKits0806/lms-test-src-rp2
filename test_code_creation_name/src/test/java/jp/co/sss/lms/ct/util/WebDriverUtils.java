@@ -920,7 +920,48 @@ public class WebDriverUtils {
 
 		//WebElement element = webDriver.findElement(By.xpath("//span[text()='*&nbsp;出勤時間が正しく入力されていません。']"));
 		//WebElement element = webDriver.findElement(By.xpath("//span[text()='* 出勤時間が正しく入力されていません。']"));
-		WebElement element = webDriver.findElement(By.xpath("//span[text()='* 出勤時間が正しく入力されていません。']"));
+		//WebElement element = webDriver.findElement(By.xpath("//span[text()='* 出勤時間が正しく入力されていません。']"));
+
+		//WebElement element = webDriver.findElement(By.xpath("//span[normalize-space(text())='出勤時間が正しく入力されていません。']"));
+		//WebElement element = webDriver.findElement(By.xpath("//span"));
+		WebElement element = webDriver.findElement(By.cssSelector(".help-inline.error"));
+
+		String attendanceatworkErorrMessage = element.getText(); // テキストを取得
+		return attendanceatworkErorrMessage;
+	}
+
+	/**
+	 * 出勤時間エラーメッセージ取得
+	 */
+	public static String getAttendanceAtWork2ErorrMessage() {
+		WebElement element = webDriver.findElement(By.cssSelector(".help-inline.error"));
+		String attendanceatworkErorrMessage = element.getText(); // テキストを取得
+		return attendanceatworkErorrMessage;
+	}
+
+	/**
+	 * 出勤時間エラーメッセージ取得
+	 */
+	public static String getAttendanceAtWork3ErorrMessage() {
+		WebElement element = webDriver.findElement(By.cssSelector(".help-inline.error"));
+		String attendanceatworkErorrMessage = element.getText(); // テキストを取得
+		return attendanceatworkErorrMessage;
+	}
+
+	/**
+	 * 出勤時間エラーメッセージ取得
+	 */
+	public static String getAttendanceAtWork4ErorrMessage() {
+		WebElement element = webDriver.findElement(By.cssSelector(".help-inline.error"));
+		String attendanceatworkErorrMessage = element.getText(); // テキストを取得
+		return attendanceatworkErorrMessage;
+	}
+
+	/**
+	 * 出勤時間エラーメッセージ取得
+	 */
+	public static String getAttendanceAtWork5ErorrMessage() {
+		WebElement element = webDriver.findElement(By.cssSelector(".help-inline.error"));
 		String attendanceatworkErorrMessage = element.getText(); // テキストを取得
 		return attendanceatworkErorrMessage;
 	}

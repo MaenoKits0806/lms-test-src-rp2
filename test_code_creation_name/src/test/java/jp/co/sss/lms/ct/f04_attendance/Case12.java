@@ -263,7 +263,7 @@ public class Case12 {
 
 		getEvidence(instance, suffix);
 
-		assertEquals("* 出勤情報がないため退勤情報を入力出来ません。", getAttendanceAtWorkErorrMessage());
+		assertEquals("* 出勤情報がないため退勤情報を入力出来ません。", getAttendanceAtWork2ErorrMessage());
 		assertEquals("勤怠情報変更｜LMS", getTitle());
 
 	}
@@ -304,7 +304,7 @@ public class Case12 {
 
 		getEvidence(instance, suffix);
 
-		assertEquals("* 退勤時刻[0]は出勤時刻[0]より後でなければいけません。", getAttendanceAtWorkErorrMessage());
+		assertEquals("* 退勤時刻[0]は出勤時刻[0]より後でなければいけません。", getAttendanceAtWork3ErorrMessage());
 		assertEquals("勤怠情報変更｜LMS", getTitle());
 	}
 
@@ -344,7 +344,7 @@ public class Case12 {
 
 		getEvidence(instance, suffix);
 
-		assertEquals("* 中抜け時間が勤務時間を超えています。", getAttendanceAtWorkErorrMessage());
+		assertEquals("* 中抜け時間が勤務時間を超えています。", getAttendanceAtWork4ErorrMessage());
 		assertEquals("勤怠情報変更｜LMS", getTitle());
 	}
 
@@ -385,7 +385,7 @@ public class Case12 {
 
 		getEvidence(instance, suffix);
 
-		assertEquals("* 備考の長さが最大値(100)を超えています。", getAttendanceAtWorkErorrMessage());
+		assertEquals("* 備考の長さが最大値(100)を超えています。", getAttendanceAtWork5ErorrMessage());
 		assertEquals("勤怠情報変更｜LMS", getTitle());
 	}
 
