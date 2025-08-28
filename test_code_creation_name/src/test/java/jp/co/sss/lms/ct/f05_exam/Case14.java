@@ -292,6 +292,8 @@ public class Case14 {
 
 		exambackBtn.click();
 
+		WebDriverUtils.getDisplayDown();
+
 		// 5秒待つ 
 		Thread.sleep(5000);
 

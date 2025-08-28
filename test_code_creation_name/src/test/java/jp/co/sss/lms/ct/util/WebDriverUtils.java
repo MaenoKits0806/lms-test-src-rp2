@@ -301,6 +301,21 @@ public class WebDriverUtils {
 	}
 
 	/**
+	 * 画面の下までスクロール
+	 */
+	public static void getDisplayDown() {
+
+		// JavaScriptExecutorを取得
+		JavascriptExecutor js = (JavascriptExecutor) webDriver;
+		// ページ最下部までスクロール
+		// ページ最下部までスクロール
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		// 最下部前スクロールしたければPAGE_DOWNを繰り返す
+		//webDriver.findElement(By.tagName("body")).click();
+		//webDriver.findElement(By.tagName("body")).sendKeys(Keys.PAGE_DOWN);
+	}
+
+	/**
 	 * 試験画面の問題情報取得
 	 * @throws InterruptedException 
 	 */
@@ -327,7 +342,10 @@ public class WebDriverUtils {
 		//		questionselect[10] = 2;
 		//		questionselect[11] = 3;
 
-		int[] questionanswer = { 3, 3, 1, 1, 2, 2, 4, 3, 2, 2, 2, 3 };
+		//全問正解
+		//int[] questionanswer = { 3, 3, 1, 1, 2, 2, 4, 3, 2, 2, 2, 3 };
+		//正答と誤答が半々
+		int[] questionanswer = { 3, 3, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1 };
 		//List<WebElement> elements = webDriver.findElements(By.xpath("//form/div"));
 		//String innerText = webDriver.findElement(By.xpath("//form/div")).getText();
 		int count = 0;

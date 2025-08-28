@@ -290,6 +290,7 @@ public class Case13 {
 		exambackBtn.click();
 
 		//examanswersubmitBtn.click();
+		WebDriverUtils.getDisplayDown();
 
 		// 5秒待つ 
 		Thread.sleep(5000);
