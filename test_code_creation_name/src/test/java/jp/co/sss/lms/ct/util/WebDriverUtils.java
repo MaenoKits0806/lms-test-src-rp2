@@ -834,4 +834,31 @@ public class WebDriverUtils {
 		alert.accept();
 	}
 
+	/**
+	 * 勤怠情報を直接編集するリンク取得
+	 */
+	public static WebElement getAttendanceDirectEditing() {
+		WebElement attendancedirectediting = webDriver.findElement(By.linkText("勤怠情報を直接編集する"));
+		return attendancedirectediting;
+	}
+
+	/**
+	 * 勤怠情報を更新する ★使用している
+	 */
+	public static void getAttendanceUpdateBtn() {
+		//WebElement attendanceupdateBtn = webDriver
+		//		.findElement(By.xpath("//input[@value='更新']"));
+		webDriver.findElement(By.xpath("//input[@value='更新']")).click();
+		//アラートが出るまで待つ
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.alertIsPresent());
+
+		//アラートに切り替える
+		Alert alert = webDriver.switchTo().alert();
+
+		//OKをクリック
+		alert.accept();
+		//return attendanceupdateBtn;
+	}
+
 }
