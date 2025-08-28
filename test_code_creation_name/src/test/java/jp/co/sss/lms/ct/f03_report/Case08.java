@@ -279,7 +279,8 @@ public class Case08 {
 		//自分自身をインスタンス化して渡す
 		Case08 instance = new Case08();
 
-		String reportdate = "2022年10月5日(水)";
+		//String reportdate = "2022年10月5日(水)";
+		String reportdate = "2022年10月1日(土)";
 		WebElement applicablereportdetailBtn = WebDriverUtils.getApplicableReportDetailBtn(reportdate);
 		applicablereportdetailBtn.click();
 

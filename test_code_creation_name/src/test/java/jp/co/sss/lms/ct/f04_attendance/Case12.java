@@ -123,7 +123,7 @@ public class Case12 {
 		//		password.sendKeys("StudentAA03A");
 
 		username.sendKeys("StudentAA01");
-		password.sendKeys("StudentAA01");
+		password.sendKeys("StudentAA01A");
 
 		// ログインボタンをクリック
 		WebElement loginBtn = WebDriverUtils.getLoginBtn();
