@@ -14,6 +14,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -185,36 +186,204 @@ public class Case12 {
 	@Test
 	@Order(5)
 	@DisplayName("テスト05 不適切な内容で修正してエラー表示：出退勤の（時）と（分）のいずれかが空白")
-	void test05() {
-		// TODO ここに追加
+	void test05() throws InterruptedException {
+		String suffix = null;
+
+		//自分自身をインスタンス化して渡す
+		Case12 instance = new Case12();
+
+		// 勤怠タブをクリック
+		Select attendanceatworkhour = getAttendanceAtWorkHour();
+		Select attendanceatworkminutes = getAttendanceAtWorkMinutes();
+		Select leavingworkHour = getLeavingWorkHour();
+		Select leavingworkMinutes = getLeavingWorkMinutes();
+		Select stepout = getStepOut();
+		WebElement remarks = getRemarks();
+		attendanceatworkhour.selectByValue("9");
+		attendanceatworkminutes.selectByValue("");
+		leavingworkHour.selectByValue("");
+		leavingworkMinutes.selectByValue("");
+		stepout.selectByValue("");
+		remarks.clear();
+		//remarks.sendKeys("あいうえお");
+
+		getDisplayDown();
+		Thread.sleep(3000);
+
+		WebDriverUtils.getAttendanceUpdateBtn();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "01_勤怠情報直接変更画面に遷移";
+
+		getEvidence(instance, suffix);
+
+		assertEquals("* 出勤時間が正しく入力されていません。", getAttendanceAtWorkErorrMessage());
+		assertEquals("勤怠情報変更｜LMS", getTitle());
+
 	}
 
 	@Test
 	@Order(6)
 	@DisplayName("テスト06 不適切な内容で修正してエラー表示：出勤が空白で退勤に入力あり")
-	void test06() {
-		// TODO ここに追加
+	void test06() throws InterruptedException {
+		String suffix = null;
+
+		//自分自身をインスタンス化して渡す
+		Case12 instance = new Case12();
+
+		// 勤怠タブをクリック
+		Select attendanceatworkhour = getAttendanceAtWorkHour();
+		Select attendanceatworkminutes = getAttendanceAtWorkMinutes();
+		Select leavingworkHour = getLeavingWorkHour();
+		Select leavingworkMinutes = getLeavingWorkMinutes();
+		Select stepout = getStepOut();
+		WebElement remarks = getRemarks();
+		attendanceatworkhour.selectByValue("");
+		attendanceatworkminutes.selectByValue("");
+		leavingworkHour.selectByValue("18");
+		leavingworkMinutes.selectByValue("0");
+		stepout.selectByValue("");
+		remarks.clear();
+		//remarks.sendKeys("あいうえお");
+
+		getDisplayDown();
+		Thread.sleep(3000);
+
+		WebDriverUtils.getAttendanceUpdateBtn();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "01_勤怠情報直接変更画面に遷移";
+
+		getEvidence(instance, suffix);
+
+		assertEquals("* 出勤情報がないため退勤情報を入力出来ません。", getAttendanceAtWorkErorrMessage());
+		assertEquals("勤怠情報変更｜LMS", getTitle());
+
 	}
 
 	@Test
 	@Order(7)
 	@DisplayName("テスト07 不適切な内容で修正してエラー表示：出勤が退勤よりも遅い時間")
-	void test07() {
-		// TODO ここに追加
+	void test07() throws InterruptedException {
+		String suffix = null;
+
+		//自分自身をインスタンス化して渡す
+		Case12 instance = new Case12();
+
+		// 勤怠タブをクリック
+		Select attendanceatworkhour = getAttendanceAtWorkHour();
+		Select attendanceatworkminutes = getAttendanceAtWorkMinutes();
+		Select leavingworkHour = getLeavingWorkHour();
+		Select leavingworkMinutes = getLeavingWorkMinutes();
+		Select stepout = getStepOut();
+		WebElement remarks = getRemarks();
+		attendanceatworkhour.selectByValue("18");
+		attendanceatworkminutes.selectByValue("0");
+		leavingworkHour.selectByValue("9");
+		leavingworkMinutes.selectByValue("0");
+		stepout.selectByValue("");
+		remarks.clear();
+		//remarks.sendKeys("あいうえお");
+
+		getDisplayDown();
+		Thread.sleep(3000);
+
+		WebDriverUtils.getAttendanceUpdateBtn();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "01_勤怠情報直接変更画面に遷移";
+
+		getEvidence(instance, suffix);
+
+		assertEquals("* 退勤時刻[0]は出勤時刻[0]より後でなければいけません。", getAttendanceAtWorkErorrMessage());
+		assertEquals("勤怠情報変更｜LMS", getTitle());
 	}
 
 	@Test
 	@Order(8)
 	@DisplayName("テスト08 不適切な内容で修正してエラー表示：出退勤時間を超える中抜け時間")
-	void test08() {
-		// TODO ここに追加
+	void test08() throws InterruptedException {
+		String suffix = null;
+		//自分自身をインスタンス化して渡す
+		Case12 instance = new Case12();
+
+		// 勤怠タブをクリック
+		Select attendanceatworkhour = getAttendanceAtWorkHour();
+		Select attendanceatworkminutes = getAttendanceAtWorkMinutes();
+		Select leavingworkHour = getLeavingWorkHour();
+		Select leavingworkMinutes = getLeavingWorkMinutes();
+		Select stepout = getStepOut();
+		WebElement remarks = getRemarks();
+
+		attendanceatworkhour.selectByValue("9");
+		attendanceatworkminutes.selectByValue("0");
+		leavingworkHour.selectByValue("17");
+		leavingworkMinutes.selectByValue("30");
+		stepout.selectByValue("465");
+		remarks.clear();
+		//remarks.sendKeys("あいうえお");
+
+		getDisplayDown();
+		Thread.sleep(3000);
+
+		WebDriverUtils.getAttendanceUpdateBtn();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "01_勤怠情報直接変更画面に遷移";
+
+		getEvidence(instance, suffix);
+
+		assertEquals("* 中抜け時間が勤務時間を超えています。", getAttendanceAtWorkErorrMessage());
+		assertEquals("勤怠情報変更｜LMS", getTitle());
 	}
 
 	@Test
 	@Order(9)
 	@DisplayName("テスト09 不適切な内容で修正してエラー表示：備考が100文字超")
-	void test09() {
-		// TODO ここに追加
+	void test09() throws InterruptedException {
+		String suffix = null;
+		//自分自身をインスタンス化して渡す
+		Case12 instance = new Case12();
+
+		// 勤怠タブをクリック
+		Select attendanceatworkhour = getAttendanceAtWorkHour();
+		Select attendanceatworkminutes = getAttendanceAtWorkMinutes();
+		Select leavingworkHour = getLeavingWorkHour();
+		Select leavingworkMinutes = getLeavingWorkMinutes();
+		Select stepout = getStepOut();
+		WebElement remarks = getRemarks();
+
+		attendanceatworkhour.selectByValue("9");
+		attendanceatworkminutes.selectByValue("0");
+		leavingworkHour.selectByValue("17");
+		leavingworkMinutes.selectByValue("30");
+		stepout.selectByValue("30");
+		remarks.clear();
+		remarks.sendKeys(
+				"今日は天気が良く、公園で散歩を楽しんだ。公園にはたくさんの花が咲いており、その美しさに心が癒された。特に桜の花が素晴らしく、その下で一息つくのは最高だった。今日は天気が良く、公園で散歩を楽しんだ。公園にはたくさんの花が咲いており、その美しさに心が癒された。特に桜の花が素晴らしく、その下で一息つくのは最高だった。");
+
+		getDisplayDown();
+		Thread.sleep(3000);
+
+		WebDriverUtils.getAttendanceUpdateBtn();
+
+		// 5秒待つ 
+		Thread.sleep(5000);
+
+		suffix = "01_勤怠情報直接変更画面に遷移";
+
+		getEvidence(instance, suffix);
+
+		assertEquals("* 備考の長さが最大値(100)を超えています。", getAttendanceAtWorkErorrMessage());
+		assertEquals("勤怠情報変更｜LMS", getTitle());
 	}
 
 }

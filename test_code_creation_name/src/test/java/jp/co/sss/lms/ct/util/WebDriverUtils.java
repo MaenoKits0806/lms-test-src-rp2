@@ -861,4 +861,68 @@ public class WebDriverUtils {
 		//return attendanceupdateBtn;
 	}
 
+	/**
+	 * 出勤の時情報を直接編集するリンク取得
+	 */
+	public static Select getAttendanceAtWorkHour() {
+		Select attendanceatworkhour = new Select(webDriver.findElement(By.id("startHour0")));
+		return attendanceatworkhour;
+	}
+
+	/**
+	 * 出勤の分情報を直接編集するリンク取得
+	 */
+	public static Select getAttendanceAtWorkMinutes() {
+		Select attendanceatworkminutes = new Select(webDriver.findElement(By.id("startMinute0")));
+		return attendanceatworkminutes;
+	}
+
+	/**
+	 * 退勤の時情報を直接編集するリンク取得
+	 */
+	public static Select getLeavingWorkHour() {
+		Select leavingworkHour = new Select(webDriver.findElement(By.id("endHour0")));
+		return leavingworkHour;
+	}
+
+	/**
+	 * 退勤の分情報を直接編集するリンク取得
+	 */
+	public static Select getLeavingWorkMinutes() {
+		Select leavingworkMinutes = new Select(webDriver.findElement(By.id("endMinute0")));
+		return leavingworkMinutes;
+	}
+
+	/**
+	 * 中抜け情報を直接編集するリンク取得
+	 */
+	public static Select getStepOut() {
+		//Select stepout = new Select(webDriver.findElement(By.id("endMinute0")));
+		//String innerText = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[1]")).getText(); // テキストを取得
+
+		Select stepout = new Select(webDriver.findElement(By.name("attendanceList[0].blankTime")));
+		return stepout;
+	}
+
+	/**
+	 * 備考情報を直接編集するリンク取得
+	 */
+	public static WebElement getRemarks() {
+		//Select remarks = new Select(webDriver.findElement(By.name("attendanceList[0].note")));
+		WebElement remarks = webDriver.findElement(By.name("attendanceList[0].note"));
+		return remarks;
+	}
+
+	/**
+	 * 出勤時間エラーメッセージ取得
+	 */
+	public static String getAttendanceAtWorkErorrMessage() {
+
+		//WebElement element = webDriver.findElement(By.xpath("//span[text()='*&nbsp;出勤時間が正しく入力されていません。']"));
+		//WebElement element = webDriver.findElement(By.xpath("//span[text()='* 出勤時間が正しく入力されていません。']"));
+		WebElement element = webDriver.findElement(By.xpath("//span[text()='* 出勤時間が正しく入力されていません。']"));
+		String attendanceatworkErorrMessage = element.getText(); // テキストを取得
+		return attendanceatworkErorrMessage;
+	}
+
 }
