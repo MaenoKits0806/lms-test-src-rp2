@@ -301,6 +301,92 @@ public class WebDriverUtils {
 	}
 
 	/**
+	 * 試験画面の問題情報取得
+	 * @throws InterruptedException 
+	 */
+	public static void getExamQuestion() throws InterruptedException {
+		//List<WebElement> elements = webDriver.findElements(By.xpath("//table[3]/tbody/tr"));
+		//List<WebElement> elements = webDriver.findElements(By.xpath("//form/div[1]"));
+
+		//String innerText = webDriver.findElement(By.xpath("//form/div[1]/div/ul/li[3]")).getText();
+		//WebElement examquestion = webDriver
+		//		.findElement(By.xpath("//form/div[1]/div/ul/li[3]"));
+		//examquestion.click();
+
+		//		int questionselect[] = new int[12];
+		//		questionselect[0] = 3;
+		//		questionselect[1] = 3;
+		//		questionselect[2] = 1;
+		//		questionselect[3] = 1;
+		//		questionselect[4] = 2;
+		//		questionselect[5] = 2;
+		//		questionselect[6] = 4;
+		//		questionselect[7] = 3;
+		//		questionselect[8] = 2;
+		//		questionselect[9] = 2;
+		//		questionselect[10] = 2;
+		//		questionselect[11] = 3;
+
+		int[] questionanswer = { 3, 3, 1, 1, 2, 2, 4, 3, 2, 2, 2, 3 };
+		//List<WebElement> elements = webDriver.findElements(By.xpath("//form/div"));
+		//String innerText = webDriver.findElement(By.xpath("//form/div")).getText();
+		int count = 0;
+		int options = 0;
+
+		for (int i = 0; i < questionanswer.length; i++) {
+			scrollTo(options);
+			//Thread.sleep(3000);
+			int mozi = count + 1;
+			int mozi2 = questionanswer[count];
+			WebElement examquestion = webDriver
+					.findElement(By.xpath("//form/div[" + mozi + "]/div/ul/li[" + mozi2 + "]/input"));
+			examquestion.click();
+			Thread.sleep(3000);
+
+			count++;
+			//options = options + 400;
+			//options = options + 380;
+			options = options + 370;
+		}
+
+		//		scrollTo(0);
+		//		Thread.sleep(3000);
+		//		int mozi = questionanswer[0];
+		//		//String innerText = webDriver.findElement(By.xpath("//form/div[1]/div/ul/li[ " + mozi + " ]")).getText();
+		//		WebElement examquestion = webDriver.findElement(By.xpath("//form/div[1]/div/ul/li[ " + mozi + " ]/input"));
+		//		examquestion.click();
+		//
+		//		scrollTo(400);
+		//		Thread.sleep(3000);
+		//		int mozi2 = questionanswer[1];
+		//		//String innerText2 = webDriver.findElement(By.xpath("//form/div[2]/div/ul/li[ " + mozi2 + " ]")).getText();
+		//		WebElement examquestion2 = webDriver.findElement(By.xpath("//form/div[2]/div/ul/li[ " + mozi2 + " ]/input"));
+		//		examquestion2.click();
+		//
+		//		scrollTo(800);
+		//		Thread.sleep(3000);
+		//		int mozi3 = questionanswer[2];
+		//		//String innerText3 = webDriver.findElement(By.xpath("//form/div[3]/div/ul/li[ " + mozi3 + " ]")).getText();
+		//		WebElement examquestion3 = webDriver.findElement(By.xpath("//form/div[3]/div/ul/li[ " + mozi3 + " ]/input"));
+		//		examquestion3.click();
+
+		//return examquestion;
+
+		//int count = 2;
+		//		for (WebElement els : elements) {
+		//			String innerText = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[1]")).getText(); // テキストを取得
+		//			String innerText2 = webDriver.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[2]")).getText(); // テキストを取得
+		//			if (innerText.equals(reportdate) && innerText2.equals(reportname)) {
+		//				WebElement applicablereportcorrectionBtn = webDriver
+		//						.findElement(By.xpath("//table[3]/tbody/tr[ " + count + "]/td[5]/form[2]"));
+		//				return applicablereportcorrectionBtn;
+		//			}
+		//			count++;
+		//		}
+		//		return null;
+	}
+
+	/**
 	 * 試験画面の試験確認情報取得 ★使用している
 	 */
 	public static WebElement getExamConfirmationBtn() {
