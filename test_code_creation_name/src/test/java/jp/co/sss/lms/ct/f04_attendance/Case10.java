@@ -118,8 +118,11 @@ public class Case10 {
 		WebElement username = WebDriverUtils.getUserName();
 		WebElement password = WebDriverUtils.getPassword();
 
-		username.sendKeys("StudentAA03");
-		password.sendKeys("StudentAA03A");
+		//		username.sendKeys("StudentAA03");
+		//		password.sendKeys("StudentAA03A");
+
+		username.sendKeys("StudentAA01");
+		password.sendKeys("StudentAA01A");
 
 		// ログインボタンをクリック
 		WebElement loginBtn = WebDriverUtils.getLoginBtn();
