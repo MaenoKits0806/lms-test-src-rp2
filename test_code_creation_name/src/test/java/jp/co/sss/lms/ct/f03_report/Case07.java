@@ -148,11 +148,12 @@ public class Case07 {
 		scrollTo(250);
 
 		// 未提出情報を取得
-		//WebElement notsubmitted = WebDriverUtils.getNotSubmitted();
+		WebElement notsubmitted = WebDriverUtils.getNotSubmitted();
+		notsubmitted.click();
 
-		WebElement detailBtn = WebDriverUtils.getDetailBtn();
+		//WebElement detailBtn = WebDriverUtils.getDetailBtn();
 
-		detailBtn.click();
+		//detailBtn.click();
 
 		// 5秒待つ 
 		Thread.sleep(5000);
@@ -216,7 +217,7 @@ public class Case07 {
 
 		assertEquals("レポート登録 | LMS", getTitle());
 
-		// ログインボタンをクリック
+		// 提出するボタンをクリック
 		WebElement submitBtn = getSubmitBtn();
 
 		submitBtn.click();
