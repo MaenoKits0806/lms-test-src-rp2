@@ -125,8 +125,11 @@ public class Case17 {
 		WebElement username = getUserName();
 		WebElement password = getPassword();
 
-		username.sendKeys("StudentAA03");
-		password.sendKeys("StudentAA03");
+		//		username.sendKeys("StudentAA03");
+		//		password.sendKeys("StudentAA03");
+
+		username.sendKeys("StudentAA01");
+		password.sendKeys("StudentAA01");
 
 		// ログインボタンをクリック
 		WebElement loginBtn = getLoginBtn();
@@ -199,9 +202,13 @@ public class Case17 {
 		WebElement newpassword = getNewPassword();
 		WebElement checkpassword = getCheckPassword();
 
-		currentpassword.sendKeys("StudentAA03");
-		newpassword.sendKeys("StudentAA03A");
-		checkpassword.sendKeys("StudentAA03A");
+		//		currentpassword.sendKeys("StudentAA03");
+		//		newpassword.sendKeys("StudentAA03A");
+		//		checkpassword.sendKeys("StudentAA03A");
+
+		currentpassword.sendKeys("StudentAA01");
+		newpassword.sendKeys("StudentAA01A");
+		checkpassword.sendKeys("StudentAA01A");
 
 		suffix = "01_パスワードを入力";
 

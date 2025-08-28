@@ -126,8 +126,10 @@ public class Case16 {
 		WebElement username = getUserName();
 		WebElement password = getPassword();
 
-		username.sendKeys("StudentAA02");
-		password.sendKeys("StudentAA02");
+		//		username.sendKeys("StudentAA02");
+		//		password.sendKeys("StudentAA02");
+		username.sendKeys("StudentAA01");
+		password.sendKeys("StudentAA01");
 
 		// ログインボタンをクリック
 		WebElement loginBtn = getLoginBtn();
@@ -350,9 +352,13 @@ public class Case16 {
 		WebElement newpassword = getNewPassword();
 		WebElement checkpassword = getCheckPassword();
 
-		currentpassword.sendKeys("StudentAA02");
-		newpassword.sendKeys("StudentAA02A");
-		checkpassword.sendKeys("StudentAA02B");
+		//		currentpassword.sendKeys("StudentAA02");
+		//		newpassword.sendKeys("StudentAA02A");
+		//		checkpassword.sendKeys("StudentAA02B");
+
+		currentpassword.sendKeys("StudentAA01");
+		newpassword.sendKeys("StudentAA01A");
+		checkpassword.sendKeys("StudentAA01B");
 
 		suffix = "01_一致しない確認パスワードを入力";
 
